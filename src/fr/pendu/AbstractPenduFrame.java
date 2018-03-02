@@ -27,6 +27,7 @@ import fr.pendu.windows.Changelog;
 import fr.pendu.windows.Popup;
 
 public abstract class AbstractPenduFrame {
+	JMenu mnHelp = new JMenu("help");
 	public static String currentProfileUpdater;
 	protected Action actionNewGame;
 	protected Action actionQuit;
@@ -301,7 +302,6 @@ public abstract class AbstractPenduFrame {
 		mntmEmpty.setAction(actionQuit);
 		mnPendu.add(mntmEmpty);
 
-		JMenu mnHelp = new JMenu("help");
 		menuBar.add(mnHelp);
 
 		JMenuItem mntmRglesDuJeu = new JMenuItem("R\u00E8gles du jeu");
@@ -348,6 +348,11 @@ public abstract class AbstractPenduFrame {
 		mntmProfils.add(currentProfil);
 
 		return mntmProfils;
+	}
+
+	protected JMenu getmnHelp() {
+
+		return mnHelp;
 	}
 
 }

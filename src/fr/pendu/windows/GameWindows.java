@@ -16,7 +16,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
 import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -26,7 +28,6 @@ import fr.pendu.game.LetSPlay;
 import fr.pendu.utils.DeleteFiles;
 
 public class GameWindows extends AbstractPenduFrame {
-
 	private static final int MAX_MISTAKES = 8;
 	private static JFrame frmJeuDuPendu;
 	private JTextField txtEcrivezUneLettre;
@@ -36,6 +37,7 @@ public class GameWindows extends AbstractPenduFrame {
 	private JTextArea frmtdtxtfldD;
 	public String finalWord;
 	private final Action actionFoundWord = new SwingActionFoundWord();
+	private final Action actionHint = new SwingActionHint();
 	public static int mistakes = 1;
 	JLabel lblNewLabel = new JLabel("");
 
@@ -70,6 +72,12 @@ public class GameWindows extends AbstractPenduFrame {
 				GeneralConstants.DIMENSION_OF_SCREEN.height / 2 - frmJeuDuPendu.getSize().height / 2);
 		frmJeuDuPendu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		JMenuBar menuBar = createMenu(frmJeuDuPendu, true);
+		JMenu help = getmnHelp();
+
+		JMenuItem hint = new JMenuItem("Indice");
+		hint.setAction(actionHint);
+		help.add(hint);
+
 		frmJeuDuPendu.setJMenuBar(menuBar);
 
 		frmJeuDuPendu.addWindowListener(new WindowAdapter() {
@@ -232,6 +240,19 @@ public class GameWindows extends AbstractPenduFrame {
 			LetSPlay.victory(word, false, 0);
 		}
 
+	}
+
+	@SuppressWarnings("serial")
+	private class SwingActionHint extends AbstractAction {
+		public SwingActionHint() {
+			putValue(NAME, "Indice");
+			putValue(SHORT_DESCRIPTION, "Cliquez ici pour découvrir une lettre. Attention, vous perdrez des points.");
+		}
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+
+		}
 	}
 
 	@SuppressWarnings("serial")
