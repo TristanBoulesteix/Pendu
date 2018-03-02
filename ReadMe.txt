@@ -1,5 +1,4 @@
 Ce programme est jeu de pendu codé par Tristan BOULESTEIX. Il a été codé bénévolement et est distribué gratuitement.
 
-Attention : Merci de n'effacer ou de ne modifier AUCUN des fichiers du dossier actuel (fournit avec le jeu). Le programme pourrait ne plus fonctionner correctement.
-
-Caution : Please, do not erase ANY of files in the current directory (provided with the game). The software may not work properly.
+[fr] Pour installer le programme sur un ordinateur, vous devez télécharger le fichier "Pendu.jar". Ensuite, ajouter deux dossier dans le même sous dossier nommés respectivement "penduUsersAccount" et "Settings".
+[en] To Add this software, you have to download the file "Pendu.jar" and add two directory in the same subforlder named "penduUsersAccount" and "Settings".
