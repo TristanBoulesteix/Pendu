@@ -258,4 +258,9 @@ public class Popup {
 				"Attention", JOptionPane.ERROR_MESSAGE);
 	}
 
+	public static void onlyOneLetterRemaining() {
+		JOptionPane.showMessageDialog(null, "Il ne vous reste qu'une seule lettre à trouver. Vous pouvez y arriver !",
+				"Encore un petit effort...", JOptionPane.ERROR_MESSAGE);
+	}
+
 }

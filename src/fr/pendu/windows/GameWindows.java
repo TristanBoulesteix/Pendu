@@ -255,10 +255,13 @@ public class GameWindows extends AbstractPenduFrame {
 			char l;
 
 			l = giveOneLetter();
-			updateUnderscore(l);
-			checkVictory();
 
-			hintUsed = hintUsed++;
+			if (l != '$') {
+				updateUnderscore(l);
+				checkVictory();
+
+				hintUsed = hintUsed++;
+			}
 		}
 	}
 
@@ -346,11 +349,31 @@ public class GameWindows extends AbstractPenduFrame {
 		for (int i = 0; i < wordWithUnderscore.length; i++) {
 			if (wordWithUnderscore[i] == '_') {
 				l = LetSPlay.accent(finalWordArray[i]);
-				return l;
+				int number = numberOfUnderscore(wordWithUnderscore);
+
+				if (number == 1) {
+					Popup.onlyOneLetterRemaining();
+					return '$';
+				} else {
+					return l;
+				}
 			}
 		}
 
 		return 0;
+
 	}
 
+	private static int numberOfUnderscore(char[] wordWithUnderscore) {
+		int length = wordWithUnderscore.length;
+		int underscoreNumber = 0;
+
+		for (int i = 0; i < length; i++) {
+			if (wordWithUnderscore[i] == '_') {
+				underscoreNumber++;
+			}
+
+		}
+		return underscoreNumber;
+	}
 }
