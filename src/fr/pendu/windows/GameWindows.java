@@ -253,14 +253,17 @@ public class GameWindows extends AbstractPenduFrame {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			char l;
+			int confirm = Popup.confirmHintUse();
 
-			l = giveOneLetter();
+			if (confirm == 1) {
+				l = giveOneLetter();
 
-			if (l != '$') {
-				updateUnderscore(l);
-				checkVictory();
+				if (l != '$') {
+					updateUnderscore(l);
+					checkVictory();
 
-				hintUsed = hintUsed++;
+					hintUsed = hintUsed + 1;
+				}
 			}
 		}
 	}
