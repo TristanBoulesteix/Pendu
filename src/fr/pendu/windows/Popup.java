@@ -258,4 +258,21 @@ public class Popup {
 				"Attention", JOptionPane.ERROR_MESSAGE);
 	}
 
+	public static void onlyOneLetterRemaining() {
+		JOptionPane.showMessageDialog(null, "Il ne vous reste qu'une seule lettre à trouver. Vous pouvez y arriver !",
+				"Encore un petit effort...", JOptionPane.ERROR_MESSAGE);
+	}
+
+	public static int confirmHintUse() {
+		int confirm = JOptionPane.showConfirmDialog(null,
+				"Êtes-vous sûr d'utiliser un indice ? Vous pourrez perdre des points.", "Hint",
+				JOptionPane.OK_CANCEL_OPTION);
+
+		if (confirm == JOptionPane.OK_OPTION) {
+			return 1;
+		} else {
+			return 0;
+		}
+	}
+
 }

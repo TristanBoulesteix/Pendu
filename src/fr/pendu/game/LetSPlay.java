@@ -52,8 +52,7 @@ public class LetSPlay {
 		return anteUnderscore;
 	}
 
-	// "Ignoration des accents
-	// TODO Ignorationner les "ç"
+	// Ignoration des accents et des caractères spéciaux
 	public static char accent(char l) {
 
 		if (l == 'e' || l == 'è' || l == 'ê' || l == 'é') {

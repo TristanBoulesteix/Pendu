@@ -31,6 +31,7 @@ public class CalculOfPoints {
 
 	public static JEditorPane points(String finalWord, boolean victory, boolean found, int character) {
 		int foundedScore = 0;
+		int hint;
 		int total = 0;
 		int pendaison;
 		StringBuilder scoreBuilt = new StringBuilder();
@@ -66,6 +67,18 @@ public class CalculOfPoints {
 				total = 0;
 			}
 
+			if (GameWindows.hintUsed != 0) {
+				scoreBuilt.append("<li>Indices utilisés..........");
+				scoreBuilt.append(GameWindows.hintUsed);
+				scoreBuilt.append("</li><br />");
+			} else if (GameWindows.hintUsed == 0) {
+				if (victory == true) {
+					scoreBuilt.append("<li>Aucun indice utilisé......");
+					scoreBuilt.append("10 pts</li><br />");
+					total = total + 10;
+				}
+			}
+
 			if (found == true) {
 				foundedScore = 10 * (character - 1);
 				scoreBuilt.append("<li>J'ai trouvé !...............");
@@ -92,6 +105,20 @@ public class CalculOfPoints {
 			} else {
 				scoreBuilt.append("<li>Défaite.......................0 pts</li><br />");
 				total = 0;
+			}
+
+			if (GameWindows.hintUsed != 0) {
+				hint = 5 * GameWindows.hintUsed;
+				scoreBuilt.append("<li>Indices....................-");
+				scoreBuilt.append(hint);
+				scoreBuilt.append("</li><br />");
+				total = total - hint;
+			} else if (GameWindows.hintUsed == 0) {
+				if (victory == true) {
+					scoreBuilt.append("<li>Aucun indice utilisé......");
+					scoreBuilt.append("5 pts</li><br />");
+					total = total + 5;
+				}
 			}
 
 			if (found == true) {
@@ -128,6 +155,20 @@ public class CalculOfPoints {
 			} else {
 				scoreBuilt.append("<li>Défaite........................0 pts</li><br />");
 				total = 0;
+			}
+
+			if (GameWindows.hintUsed != 0) {
+				hint = 10 * GameWindows.hintUsed;
+				scoreBuilt.append("<li>Indices....................-");
+				scoreBuilt.append(hint);
+				scoreBuilt.append("</li><br />");
+				total = total - hint;
+			} else if (GameWindows.hintUsed == 0) {
+				if (victory == true) {
+					scoreBuilt.append("<li>Aucun indice utilisé......");
+					scoreBuilt.append("5 pts</li><br />");
+					total = total + 5;
+				}
 			}
 
 			if (found == true) {

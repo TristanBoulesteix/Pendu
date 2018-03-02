@@ -16,7 +16,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
 import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -26,7 +28,6 @@ import fr.pendu.game.LetSPlay;
 import fr.pendu.utils.DeleteFiles;
 
 public class GameWindows extends AbstractPenduFrame {
-
 	private static final int MAX_MISTAKES = 8;
 	private static JFrame frmJeuDuPendu;
 	private JTextField txtEcrivezUneLettre;
@@ -36,7 +37,9 @@ public class GameWindows extends AbstractPenduFrame {
 	private JTextArea frmtdtxtfldD;
 	public String finalWord;
 	private final Action actionFoundWord = new SwingActionFoundWord();
+	private final Action actionHint = new SwingActionHint();
 	public static int mistakes = 1;
+	public static int hintUsed = 0;
 	JLabel lblNewLabel = new JLabel("");
 
 	/**
@@ -70,6 +73,12 @@ public class GameWindows extends AbstractPenduFrame {
 				GeneralConstants.DIMENSION_OF_SCREEN.height / 2 - frmJeuDuPendu.getSize().height / 2);
 		frmJeuDuPendu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		JMenuBar menuBar = createMenu(frmJeuDuPendu, true);
+		JMenu help = getmnHelp();
+
+		JMenuItem hint = new JMenuItem("Indice");
+		hint.setAction(actionHint);
+		help.add(hint);
+
 		frmJeuDuPendu.setJMenuBar(menuBar);
 
 		frmJeuDuPendu.addWindowListener(new WindowAdapter() {
@@ -235,6 +244,31 @@ public class GameWindows extends AbstractPenduFrame {
 	}
 
 	@SuppressWarnings("serial")
+	private class SwingActionHint extends AbstractAction {
+		public SwingActionHint() {
+			putValue(NAME, "Indice");
+			putValue(SHORT_DESCRIPTION, "Cliquez ici pour découvrir une lettre. Attention, vous serez pénalisé.");
+		}
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			char l;
+			int confirm = Popup.confirmHintUse();
+
+			if (confirm == 1) {
+				l = giveOneLetter();
+
+				if (l != '$') {
+					updateUnderscore(l);
+					checkVictory();
+
+					hintUsed = hintUsed + 1;
+				}
+			}
+		}
+	}
+
+	@SuppressWarnings("serial")
 	private class SwingActionFoundWord extends AbstractAction {
 		public SwingActionFoundWord() {
 			putValue(NAME, "J'ai trouvé !");
@@ -303,4 +337,46 @@ public class GameWindows extends AbstractPenduFrame {
 		return MAX_MISTAKES;
 	}
 
+	// Trouve la première lettre manquante
+	public char giveOneLetter() {
+		char l;
+		char[] wordWithUnderscore;
+		char[] finalWordArray;
+		String currentUnderscoreWord;
+
+		currentUnderscoreWord = frmtdtxtfldD.getText().replace(" ", "");
+
+		wordWithUnderscore = currentUnderscoreWord.toCharArray();
+		finalWordArray = word.toCharArray();
+
+		for (int i = 0; i < wordWithUnderscore.length; i++) {
+			if (wordWithUnderscore[i] == '_') {
+				l = LetSPlay.accent(finalWordArray[i]);
+				int number = numberOfUnderscore(wordWithUnderscore);
+
+				if (number == 1) {
+					Popup.onlyOneLetterRemaining();
+					return '$';
+				} else {
+					return l;
+				}
+			}
+		}
+
+		return 0;
+
+	}
+
+	private static int numberOfUnderscore(char[] wordWithUnderscore) {
+		int length = wordWithUnderscore.length;
+		int underscoreNumber = 0;
+
+		for (int i = 0; i < length; i++) {
+			if (wordWithUnderscore[i] == '_') {
+				underscoreNumber++;
+			}
+
+		}
+		return underscoreNumber;
+	}
 }
