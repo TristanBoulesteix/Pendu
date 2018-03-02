@@ -72,9 +72,11 @@ public class CalculOfPoints {
 				scoreBuilt.append(GameWindows.hintUsed);
 				scoreBuilt.append("</li><br />");
 			} else if (GameWindows.hintUsed == 0) {
-				scoreBuilt.append("<li>Aucun indice utilisé......");
-				scoreBuilt.append("10 pts</li><br />");
-				total = total + 10;
+				if (victory == true) {
+					scoreBuilt.append("<li>Aucun indice utilisé......");
+					scoreBuilt.append("10 pts</li><br />");
+					total = total + 10;
+				}
 			}
 
 			if (found == true) {
@@ -112,9 +114,11 @@ public class CalculOfPoints {
 				scoreBuilt.append("</li><br />");
 				total = total - hint;
 			} else if (GameWindows.hintUsed == 0) {
-				scoreBuilt.append("<li>Aucun indice utilisé......");
-				scoreBuilt.append("5 pts</li><br />");
-				total = total + 5;
+				if (victory == true) {
+					scoreBuilt.append("<li>Aucun indice utilisé......");
+					scoreBuilt.append("5 pts</li><br />");
+					total = total + 5;
+				}
 			}
 
 			if (found == true) {
@@ -160,9 +164,11 @@ public class CalculOfPoints {
 				scoreBuilt.append("</li><br />");
 				total = total - hint;
 			} else if (GameWindows.hintUsed == 0) {
-				scoreBuilt.append("<li>Aucun indice utilisé......");
-				scoreBuilt.append("5 pts</li><br />");
-				total = total + 5;
+				if (victory == true) {
+					scoreBuilt.append("<li>Aucun indice utilisé......");
+					scoreBuilt.append("5 pts</li><br />");
+					total = total + 5;
+				}
 			}
 
 			if (found == true) {
