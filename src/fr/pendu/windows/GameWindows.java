@@ -247,11 +247,17 @@ public class GameWindows extends AbstractPenduFrame {
 	private class SwingActionHint extends AbstractAction {
 		public SwingActionHint() {
 			putValue(NAME, "Indice");
-			putValue(SHORT_DESCRIPTION, "Cliquez ici pour découvrir une lettre. Attention, vous perdrez des points.");
+			putValue(SHORT_DESCRIPTION, "Cliquez ici pour découvrir une lettre. Attention, vous serez pénalisé.");
 		}
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
+			char l;
+
+			l = giveOneLetter();
+			updateUnderscore(l);
+			checkVictory();
+
 			hintUsed = hintUsed++;
 		}
 	}
@@ -323,6 +329,28 @@ public class GameWindows extends AbstractPenduFrame {
 
 	public static int getMaxMistakes() {
 		return MAX_MISTAKES;
+	}
+
+	// Trouve la première lettre manquante
+	public char giveOneLetter() {
+		char l;
+		char[] wordWithUnderscore;
+		char[] finalWordArray;
+		String currentUnderscoreWord;
+
+		currentUnderscoreWord = frmtdtxtfldD.getText().replace(" ", "");
+
+		wordWithUnderscore = currentUnderscoreWord.toCharArray();
+		finalWordArray = word.toCharArray();
+
+		for (int i = 0; i < wordWithUnderscore.length; i++) {
+			if (wordWithUnderscore[i] == '_') {
+				l = LetSPlay.accent(finalWordArray[i]);
+				return l;
+			}
+		}
+
+		return 0;
 	}
 
 }
