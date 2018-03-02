@@ -70,10 +70,8 @@ public class LaunchGame {
 			while ((str = lnr.readLine()) != null) {
 				lengthOfWord = str.length();
 				words = LevelToChoose.addWordsInFonctionOfLevel(levelNumber, lengthOfWord, str, words);
-				// System.out.println(str);
 			}
 		} catch (Exception e) {
-			// if any error occurs
 			e.printStackTrace();
 		} finally {
 

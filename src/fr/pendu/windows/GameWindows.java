@@ -39,6 +39,7 @@ public class GameWindows extends AbstractPenduFrame {
 	private final Action actionFoundWord = new SwingActionFoundWord();
 	private final Action actionHint = new SwingActionHint();
 	public static int mistakes = 1;
+	public static int hintUsed = 0;
 	JLabel lblNewLabel = new JLabel("");
 
 	/**
@@ -251,7 +252,7 @@ public class GameWindows extends AbstractPenduFrame {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-
+			hintUsed = hintUsed++;
 		}
 	}
 
