@@ -109,7 +109,7 @@ public class CalculOfPoints {
 
 			if (GameWindows.hintUsed != 0) {
 				hint = 5 * GameWindows.hintUsed;
-				scoreBuilt.append("<li>Indices.....................");
+				scoreBuilt.append("<li>Indices....................-");
 				scoreBuilt.append(hint);
 				scoreBuilt.append("</li><br />");
 				total = total - hint;
@@ -159,7 +159,7 @@ public class CalculOfPoints {
 
 			if (GameWindows.hintUsed != 0) {
 				hint = 10 * GameWindows.hintUsed;
-				scoreBuilt.append("<li>Indices.....................");
+				scoreBuilt.append("<li>Indices....................-");
 				scoreBuilt.append(hint);
 				scoreBuilt.append("</li><br />");
 				total = total - hint;
