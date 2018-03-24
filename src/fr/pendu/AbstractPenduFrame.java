@@ -250,7 +250,6 @@ public abstract class AbstractPenduFrame {
 				LaunchGame game = new LaunchGame();
 				game.lauchingGame(Popup.levelPopup());
 			} catch (IOException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 		}

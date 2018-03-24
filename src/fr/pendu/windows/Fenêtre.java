@@ -163,7 +163,6 @@ public class Fenêtre {
 				// Fermeture de la fenêtre de menu
 				frmPendu.dispose();
 			} catch (IOException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 		}
@@ -216,7 +215,6 @@ public class Fenêtre {
 				try {
 					desk.open(new File(FILE_PATH));
 				} catch (IOException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}
